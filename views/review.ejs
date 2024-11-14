@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/review.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>RevFlix: Movie Review Website</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container"><h1 class="logo">RevFlix</h1></div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-item"><a href="/index" target="_blank">Home</a></li>
+                    <li class="menu-item"><a href="/movies" target="_blank">Top Movies</a></li>
+                    <li class="menu-item"><a href="/series" target="_blank">Top Series</a></li>
+                    <li class="menu-item"><a href="/review" target="_blank" class="active">Review</a></li>
+                </ul>
+            </div> 
+            <div class="login-reg-container">
+                <div class="login">Hello, User</div>
+                <div class="register">
+                    <a href="/register">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgb(234, 45, 11), #151515),url('image/chains.jpg');">
+                <h1 class="about">Reviewing Page</h1>
+                <p class="featured-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form for adding or updating a review -->
+    <div class="review-form-container" id="reviewFormContainer">
+        <form id="reviewForm" action="/review" method="post">
+            <input type="hidden" name="reviewId" id="reviewId">
+            <input type="text" name="movieName" id="movieName" placeholder="Movie Name" required>
+            <textarea id="reviewText" name="reviewText" placeholder="Your Review" required></textarea>
+            <div class="button-container">
+                <button type="submit" class="submit-button">Submit Review</button>
+                <button type="button" class="cancel-button" id="cancelReviewBtn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Container for reviews -->
+    <div class="reviews-container">
+        <ul id="reviewList">
+            <% reviews.forEach(function(review) { %>
+                <li class="review-item" data-id="<%= review.id %>">
+                    <span class="movie-name"><%= review.movieName %></span>
+                    <p class="review-text"><%= review.reviewText %></p>
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <script src="/script/review.js"></script>
+</body>
+</html>
